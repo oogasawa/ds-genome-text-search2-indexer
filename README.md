@@ -48,7 +48,8 @@ Luceneの普通の使い方はStandardAnalyzerなどで字句解析して転置�
 
 ## 起動方法
 
-    java -jar target/ds-text-search2-indexer-2.0.0.jar \
+    java --illegal-access=deny \
+        -jar target/ds-text-search2-indexer-2.0.0.jar \
         --datafile=/home/you/your-data.gff
         --index=/tmp/genome.index
 
