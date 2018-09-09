@@ -33,10 +33,6 @@ import java.util.StringJoiner;
 @SpringBootApplication
 public class IndexerApp implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(IndexerApp.class, args);
-	}
-
 
 	@Value("${datafile}")
 	String datafile;
@@ -46,46 +42,46 @@ public class IndexerApp implements CommandLineRunner {
 	String index;
 
 
+	public static void main(String[] args) {
+		SpringApplication.run(IndexerApp.class, args);
+	}
+
+
 	//access command line arguments
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String[] args) throws Exception {
 
-
-		IndexerApp obj = new IndexerApp();
-		obj.makeIndex();
+		makeIndex();
 
 		for (int i=0; i<10; i++)
-			obj.testIndex("RNA", i+1);
+			testIndex("RNA", i+1);
 		for (int i=0; i<10; i++)
-			obj.testIndex("trans*", i+1);
+			testIndex("trans*", i+1);
 
-
-		//System.out.println("Hello " + name);
-		//System.out.println(bean.getName());
 
 	}
 
 
 	public void makeIndex() {
 
+		System.out.format("datafile %s:%n", datafile);
+		System.out.format("index    %s:%n", index);
+
 		IndexWriter writer = null;
 		try {
-			//if (Files.exists(Paths.get(index)))
-			//    FileUtils.deleteDirectory(new File(index));
 
-			if (!Files.exists(Paths.get(index))) {
-				Directory dir = FSDirectory.open(Paths.get(index));
-				Analyzer analyzer = new StandardAnalyzer();
-				IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
-				iwc.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
-				writer = new IndexWriter(dir, iwc);
+			Directory dir = FSDirectory.open(Paths.get(index));
+			Analyzer analyzer = new StandardAnalyzer();
+			IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
+			iwc.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
+			writer = new IndexWriter(dir, iwc);
 
-				System.err.print("Making full text search index: ");
-				indexDoc(writer);
-				writer.commit();
-				writer.close();
-				System.err.println("... done.");
-			}
+			System.err.print("Making full text search index: ");
+			indexDoc(writer);
+			writer.commit();
+			writer.close();
+			System.err.println("... done.");
+
 
 		} catch (IOException e) {
 			e.printStackTrace();
