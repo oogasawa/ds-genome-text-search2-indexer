@@ -22,6 +22,8 @@ Luceneの普通の使い方はStandardAnalyzerなどで字句解析して転置�
 
 ## 更新履歴
 
+- version 2.0.2
+    - インデックス作成時にデバッグに役立つ情報を出力するようにした
 - version 2.0.0
     - 基本的な機能を実装
       - Apache LuceneのRegexpQueryによる全文検索
@@ -40,7 +42,7 @@ Luceneの普通の使い方はStandardAnalyzerなどで字句解析して転置�
 
     git clone http://gitlab.ddbj.nig.ac.jp/oogasawa/ds-text-search2-indexer.git
     cd ds-text-search2-indexer
-    git checkout v2.0.1
+    git checkout v2.0.2
     mvn -Dmaven.test.skip=true clean package
     
 これによりtargetディレクトリの下にjarファイルが生成される。
@@ -50,9 +52,9 @@ Luceneの普通の使い方はStandardAnalyzerなどで字句解析して転置�
 
 
     java --illegal-access=deny \
-        -jar target/ds-text-search2-indexer-2.0.1.jar \
+        -jar target/ds-text-search2-indexer-2.0.2.jar \
         --datafile=/home/you/your-data.gff
-        --index=/tmp/genome.index
+        --index=/home/you/genome.index
 
 11MB程度のファイルなら1分もかからない程度でインデックスができる。
 
