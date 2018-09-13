@@ -51,6 +51,9 @@ public class IndexerApp implements CommandLineRunner {
 	@Override
 	public void run(String[] args) throws Exception {
 
+		System.out.format("datafile: %s%n", datafile);
+		System.out.format("index: %s%n", index);
+
 		makeIndex();
 
 		for (int i=0; i<10; i++)
