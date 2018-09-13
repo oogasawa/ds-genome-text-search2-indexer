@@ -38,7 +38,7 @@ Luceneの普通の使い方はStandardAnalyzerなどで字句解析して転置�
 
 ### コンパイル方法
 
-    git clone http://gitlab.ddbj.nig.ac.jp/oogasawa/ds-text-search2-indexer
+    git clone http://gitlab.ddbj.nig.ac.jp/oogasawa/ds-text-search2-indexer.git
     cd ds-text-search2-indexer
     git checkout v2.0.1
     mvn -Dmaven.test.skip=true clean package
